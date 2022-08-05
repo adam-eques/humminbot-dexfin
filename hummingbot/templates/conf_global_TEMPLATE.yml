@@ -3,9 +3,12 @@
 #################################
 
 # For more detailed information: https://docs.hummingbot.io
-template_version: 35
+template_version: 36
 
 # Exchange configs
+
+dexfin_api_key: null
+dexfin_secret_key: null
 
 beaxy_api_key: null
 beaxy_secret_key: null

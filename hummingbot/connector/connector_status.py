@@ -46,7 +46,8 @@ connector_status = {
     'uniswap': 'yellow',
     'uniswap_v3': 'yellow',
     'uniswap_ethereum_kovan': 'yellow',
-    'wazirx': 'yellow'
+    'wazirx': 'yellow',
+    "dexfin": 'red'
 }
 
 warning_messages = {

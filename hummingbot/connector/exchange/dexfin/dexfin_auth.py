@@ -1,5 +1,7 @@
+import calendar
 import hashlib
 import hmac
+import time
 from collections import OrderedDict
 from pprint import pprint
 from typing import Any, Dict
@@ -39,8 +41,16 @@ class DexfinAuth(AuthBase):
         return request  # pass-through
 
     def header_for_authentication(self) -> Dict[str, str]:
-        nonce = str(int(self.time_provider.time()))
-        pprint(nonce)
+        # nonce = str(int(self.time_provider.time()))
+
+        current_GMT = time.gmtime()
+
+        # ts stores timestamp
+        ts = calendar.timegm(current_GMT)
+        nonce = str(int(ts * 1000))
+
+        pprint('nonce: ' + nonce)
+
         signature = self._generate_signature(nonce)
         return {
             "X-Auth-Apikey": self.api_key,

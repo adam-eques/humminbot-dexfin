@@ -8,6 +8,7 @@ MAX_ORDER_ID_LEN = 36
 
 # Base URL
 REST_URL = "https://trade.dexfin.com/api/v2/peatio"
+REST_FINEX_URL = "https://trade.dexfin.com/api/v2/finex"
 WSS_URL = ""
 
 # PUBLIC_API_VERSION = "v2"
@@ -32,8 +33,8 @@ WS_HEARTBEAT_TIME_INTERVAL = 30
 
 # Binance params
 
-SIDE_BUY = 'BUY'
-SIDE_SELL = 'SELL'
+SIDE_BUY = 'buy'
+SIDE_SELL = 'sell'
 
 TIME_IN_FORCE_GTC = 'GTC'  # Good till cancelled
 TIME_IN_FORCE_IOC = 'IOC'  # Immediate or cancel

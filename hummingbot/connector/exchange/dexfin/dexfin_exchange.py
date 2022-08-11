@@ -8,7 +8,7 @@ from typing import Any, AsyncIterable, Dict, List, Optional
 from async_timeout import timeout
 
 import hummingbot.connector.exchange.dexfin.dexfin_constants as CONSTANTS
-import hummingbot.connector.exchange.dexfin.dexfin_utils as utils
+import hummingbot.connector.exchange.dexfin.dexfin_utils as myutils
 import hummingbot.connector.exchange.dexfin.dexfin_web_utils as web_utils
 from hummingbot.connector.client_order_tracker import ClientOrderTracker
 from hummingbot.connector.exchange import dexfin
@@ -164,7 +164,8 @@ class DexfinExchange(ExchangeBase):
 
     @staticmethod
     def dexfin_order_type(order_type: OrderType) -> str:
-        return order_type.name.upper()
+        # pprint(order_type.name.lower())
+        return order_type.name.lower()
 
     @staticmethod
     def to_hb_order_type(dexfin_type: str) -> OrderType:
@@ -467,7 +468,11 @@ class DexfinExchange(ExchangeBase):
         trading_rule: TradingRule = self._trading_rules[trading_pair]
         price = self.quantize_order_price(trading_pair, price)
         quantize_amount_price = Decimal("0") if price.is_nan() else price
-        amount = self.quantize_order_amount(trading_pair=trading_pair, amount=amount, price=quantize_amount_price)
+        amount = self.quantize_order_amount(
+            trading_pair=trading_pair,
+            amount=amount,
+            price=quantize_amount_price
+        )
 
         self.start_tracking_order(
             order_id=order_id,
@@ -505,27 +510,43 @@ class DexfinExchange(ExchangeBase):
 
         api_params = {"market": symbol,
                       "side": side_str,
-                      "volume": amount_str,
-                      "ord_type": type_str,
-                      #   "newClientOrderId": order_id,
-                      "price": price_str}
+                      "amount": amount_str,
+                      "type": type_str,
+                      # "newClientOrderId": order_id,
+                      "price": price_str
+                      }
+
         # if order_type == OrderType.LIMIT:
         #     api_params["timeInForce"] = CONSTANTS.TIME_IN_FORCE_GTC
         try:
-
+            base_url = self._base_url
+            self._base_url = CONSTANTS.REST_FINEX_URL
             order_result = await self._api_request(
                 method=RESTMethod.POST,
                 path_url=CONSTANTS.ORDER_PATH_URL,
-                data=api_params,
+                json=api_params,
                 is_auth_required=True)
+            self._base_url = base_url
 
-            exchange_order_id = str(order_result["id"])
+            # params = {
+            #     "email": "risingdev000@gmail.com",
+            #     "password": "123456"
+            # }
+            # base_url = self._base_url
+            # self._base_url = "https://devapp.swenewsapp.com/api/login"
+            # order_result = await self._api_request(
+            #     method=RESTMethod.POST,
+            #     path_url="",
+            #     data=params,
+            #     is_auth_required=False)
+            # self._base_url = base_url
 
+            exchange_order_id = str(order_result["uuid"])
             order_update: OrderUpdate = OrderUpdate(
                 client_order_id=order_id,
                 exchange_order_id=exchange_order_id,
                 trading_pair=trading_pair,
-                update_timestamp=utils.iso_datetime_to_timestamp(order_result["updated_at"]),
+                update_timestamp=order_result["created_at"],
                 new_state=OrderState.OPEN,
             )
             self._order_tracker.process_order_update(order_update)
@@ -851,7 +872,7 @@ class DexfinExchange(ExchangeBase):
                             fill_base_amount=Decimal(trade["amount"]),
                             fill_quote_amount=Decimal(trade["total"]),
                             fill_price=Decimal(trade["price"]),
-                            fill_timestamp=utils.iso_datetime_to_timestamp(trade["created_at"]) * 1e-3,
+                            fill_timestamp=myutils.iso_datetime_to_timestamp(trade["created_at"]) * 1e-3,
                         )
                         self._order_tracker.process_trade_update(trade_update)
                     elif self.is_confirmed_new_order_filled_event(str(trade["id"]), exchange_order_id, trading_pair):
@@ -878,7 +899,7 @@ class DexfinExchange(ExchangeBase):
                         self.trigger_event(
                             MarketEvent.OrderFilled,
                             OrderFilledEvent(
-                                timestamp=utils.iso_datetime_to_timestamp(trade["created_at"]) * 1e-3,
+                                timestamp=myutils.iso_datetime_to_timestamp(trade["created_at"]) * 1e-3,
                                 order_id=order_id,
                                 trading_pair=trading_pair,
                                 trade_type =TradeType.BUY if trade["side"] == "buy" else TradeType.SELL,
@@ -949,7 +970,7 @@ class DexfinExchange(ExchangeBase):
                         client_order_id=client_order_id,
                         exchange_order_id=str(order_update["id"]),
                         trading_pair=tracked_order.trading_pair,
-                        update_timestamp=utils.iso_datetime_to_timestamp(order_update["updated_at"]) * 1e-3,
+                        update_timestamp=myutils.iso_datetime_to_timestamp(order_update["updated_at"]) * 1e-3,
                         new_state=new_state,
                     )
 
@@ -1007,6 +1028,7 @@ class DexfinExchange(ExchangeBase):
                            path_url: str,
                            params: Optional[Dict[str, Any]] = None,
                            data: Optional[Dict[str, Any]] = None,
+                           json: Optional[Dict[str, Any]] = None,
                            is_auth_required: bool = False) -> Dict[str, Any]:
 
         return await web_utils.api_request(
@@ -1017,6 +1039,7 @@ class DexfinExchange(ExchangeBase):
             base_url=self._base_url,
             params=params,
             data=data,
+            json=json,
             method=method,
             is_auth_required=is_auth_required,
         )
@@ -1025,3 +1048,14 @@ class DexfinExchange(ExchangeBase):
         if self._rest_assistant is None:
             self._rest_assistant = await self._api_factory.get_rest_assistant()
         return self._rest_assistant
+
+    async def _get_last_order(self):
+
+        return await self._api_request(
+            method=RESTMethod.GET,
+            path_url=CONSTANTS.ORDER_PATH_URL,
+            params={
+                "limit": 1
+            },
+            is_auth_required=True
+        )

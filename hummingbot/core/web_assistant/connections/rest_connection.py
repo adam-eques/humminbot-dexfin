@@ -1,4 +1,5 @@
 import aiohttp
+
 from hummingbot.core.web_assistant.connections.data_types import RESTRequest, RESTResponse
 
 
@@ -7,11 +8,13 @@ class RESTConnection:
         self._client_session = aiohttp_client_session
 
     async def call(self, request: RESTRequest) -> RESTResponse:
+        aiohttp_resp: any
         aiohttp_resp = await self._client_session.request(
             method=request.method.value,
             url=request.url,
             params=request.params,
             data=request.data,
+            json=request.json,
             headers=request.headers,
         )
 

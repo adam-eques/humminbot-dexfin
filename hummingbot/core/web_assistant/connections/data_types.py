@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 from dataclasses import dataclass
 from enum import Enum
 from typing import Any, Mapping, Optional
@@ -28,6 +28,7 @@ class RESTRequest:
     endpoint_url: Optional[str] = None
     params: Optional[Mapping[str, str]] = None
     data: Any = None
+    json: Any = None
     headers: Optional[Mapping[str, str]] = None
     is_auth_required: bool = False
     throttler_limit_id: Optional[str] = None

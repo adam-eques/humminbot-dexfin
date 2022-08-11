@@ -509,7 +509,6 @@ class DexfinAPIOrderBookDataSourceUnitTests(unittest.TestCase):
             self.data_source.get_all_mid_prices()
         )
 
-        pprint(result)
         self.assertEqual(1, len(result))
         self.assertEqual(Decimal(19997), result[self.trading_pair])
 

@@ -14,7 +14,7 @@ from aioresponses import aioresponses
 from bidict import bidict
 from numpy import record
 
-import hummingbot.connector.exchange.dexfin.dexfin_utils as utils
+import hummingbot.connector.exchange.dexfin.dexfin_utils as myutils
 from hummingbot.connector.exchange.dexfin import dexfin_constants as CONSTANTS
 from hummingbot.connector.exchange.dexfin import dexfin_web_utils as web_utils
 from hummingbot.connector.exchange.dexfin.dexfin_api_order_book_data_source import DexfinAPIOrderBookDataSource
@@ -216,7 +216,7 @@ class DexfinExchangeTests(TestCase):
     def test_create_order_successfully(self, mock_api):
         self._simulate_trading_rules_initialized()
         request_sent_event = asyncio.Event()
-        self.exchange._set_current_timestamp(1640780000)
+        self.exchange._set_current_timestamp(1660150397)
         url = web_utils.private_rest_url(CONSTANTS.ORDER_PATH_URL)
         regex_url = re.compile(f"^{url}".replace(".", r"\.").replace("?", r"\?"))
 
@@ -228,24 +228,38 @@ class DexfinExchangeTests(TestCase):
         #     "transactTime": 1507725176595
         # }
 
+        # creation_response = {
+        #     "avg_price": "0.0",
+        #     "created_at": "2020-03-12T17:01:56+01:00",
+        #     "executed_volume": "0.0",
+        #     "id": 10440269,
+        #     "market": "btcusdt",
+        #     "ord_type": "limit",
+        #     "origin_volume": "31.0",
+        #     "price": "160.82",
+        #     "remaining_volume": "31.0",
+        #     "side": "buy",
+        #     "state": "pending",
+        #     "trades_count": 0,
+        #     "updated_at": "2020-03-12T17:01:56+01:00"
+        # }
+
         creation_response = {
-            "avg_price": "0.0",
-            "created_at": "2020-03-12T17:01:56+01:00",
-            "executed_volume": "0.0",
-            "id": 10440269,
-            "market": "btcusdt",
-            "ord_type": "limit",
-            "origin_volume": "31.0",
-            "price": "160.82",
-            "remaining_volume": "31.0",
-            "side": "buy",
+            "uuid": "ee825814-18cc-11ed-80a7-de8934f6afc5",
+            "side": "sell",
+            "type": "limit",
+            "market": "dxfusdt",
+            "origin_volume": "1",
+            "remaining_volume": "1",
+            "executed_volume": "0",
+            "price": "3",
             "state": "pending",
             "trades_count": 0,
-            "updated_at": "2020-03-12T17:01:56+01:00"
+            "created_at": 1660150397
         }
 
-        created_at = datetime.fromisoformat(creation_response["created_at"])
-        updated_at = datetime.fromisoformat(creation_response["updated_at"])
+        created_at = datetime.fromtimestamp(creation_response["created_at"])
+        # updated_at = datetime.fromisoformat(creation_response["updated_at"])
 
         mock_api.post(regex_url,
                       body=json.dumps(creation_response),
@@ -255,9 +269,9 @@ class DexfinExchangeTests(TestCase):
             self.exchange._create_order(trade_type=TradeType.BUY,
                                         order_id="OID1",
                                         trading_pair=self.trading_pair,
-                                        amount=Decimal("100"),
+                                        amount=Decimal("1"),
                                         order_type=OrderType.LIMIT,
-                                        price=Decimal("10000")))
+                                        price=Decimal("3")))
         self.async_run_with_timeout(request_sent_event.wait())
 
         order_request = next(((key, value) for key, value in mock_api.requests.items()
@@ -267,26 +281,27 @@ class DexfinExchangeTests(TestCase):
 
         self.assertEqual(self.exchange_trading_pair, request_data["market"])
         self.assertEqual(CONSTANTS.SIDE_BUY, request_data["side"])
-        self.assertEqual(DexfinExchange.dexfin_order_type(OrderType.LIMIT), request_data["ord_type"])
-        self.assertEqual(Decimal("100"), Decimal(request_data["volume"]))
-        self.assertEqual(Decimal("10000"), Decimal(request_data["price"]))
+        self.assertEqual(DexfinExchange.dexfin_order_type(OrderType.LIMIT), request_data["type"])
+        self.assertEqual(Decimal("1"), Decimal(request_data["amount"]))
+        self.assertEqual(Decimal("3"), Decimal(request_data["price"]))
         # self.assertEqual("OID1", request_data["newClientOrderId"])
 
+        pprint(self.exchange.in_flight_orders)
         self.assertIn("OID1", self.exchange.in_flight_orders)
         create_event: BuyOrderCreatedEvent = self.buy_order_created_logger.event_log[0]
 
         self.assertEqual(self.exchange.current_timestamp, create_event.timestamp)
         self.assertEqual(self.trading_pair, create_event.trading_pair)
         self.assertEqual(OrderType.LIMIT, create_event.type)
-        self.assertEqual(Decimal("100"), create_event.amount)
-        self.assertEqual(Decimal("10000"), create_event.price)
+        self.assertEqual(Decimal("1"), create_event.amount)
+        self.assertEqual(Decimal("3"), create_event.price)
         self.assertEqual("OID1", create_event.order_id)
-        self.assertEqual("10440269", create_event.exchange_order_id)
+        self.assertEqual("ee825814-18cc-11ed-80a7-de8934f6afc5", create_event.exchange_order_id)
 
         self.assertTrue(
             self._is_logged(
                 "INFO",
-                f"Created LIMIT BUY order OID1 for {Decimal('100.000000')} {self.trading_pair}."
+                f"Created LIMIT BUY order OID1 for {Decimal('1.000000')} {self.trading_pair}."
             )
         )
 
@@ -590,7 +605,7 @@ class DexfinExchangeTests(TestCase):
 
         self.async_run_with_timeout(self.exchange._update_time_synchronizer())
 
-        self.assertEqual(utils.iso_datetime_to_timestamp(response), self.exchange._dexfin_time_synchronizer.time())
+        self.assertEqual(myutils.iso_datetime_to_timestamp(response), self.exchange._dexfin_time_synchronizer.time())
 
     @aioresponses()
     def test_update_time_synchronizer_failure_is_logged(self, mock_api):
@@ -868,7 +883,7 @@ class DexfinExchangeTests(TestCase):
                          fill_event.trade_fee.flat_fees)
 
         fill_event: OrderFilledEvent = self.order_filled_logger.event_log[1]
-        self.assertEqual(float(utils.iso_datetime_to_timestamp(trade_fill_non_tracked_order["created_at"])) * 1e-3, fill_event.timestamp)
+        self.assertEqual(float(myutils.iso_datetime_to_timestamp(trade_fill_non_tracked_order["created_at"])) * 1e-3, fill_event.timestamp)
         self.assertEqual("OID99", fill_event.order_id)
         self.assertEqual(self.trading_pair, fill_event.trading_pair)
         self.assertEqual(TradeType.SELL, fill_event.trade_type)
@@ -984,7 +999,7 @@ class DexfinExchangeTests(TestCase):
 
         self.assertEqual(1, len(self.order_filled_logger.event_log))
         fill_event: OrderFilledEvent = self.order_filled_logger.event_log[0]
-        self.assertEqual(float(utils.iso_datetime_to_timestamp(trade_fill_non_tracked_order["created_at"])) * 1e-3, fill_event.timestamp)
+        self.assertEqual(float(myutils.iso_datetime_to_timestamp(trade_fill_non_tracked_order["created_at"])) * 1e-3, fill_event.timestamp)
         self.assertEqual("OID99", fill_event.order_id)
         self.assertEqual(self.trading_pair, fill_event.trading_pair)
         self.assertEqual(TradeType.SELL, fill_event.trade_type)

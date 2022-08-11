@@ -115,9 +115,9 @@ class DexfinAPIOrderBookDataSource(OrderBookTrackerDataSource):
         ret_val = {}
         # print(type(resp_json))
         for key in resp_json:
-            pprint(key)
+            # pprint(key)
             record = resp_json[key]
-            pprint(record)
+            # pprint(record)
             try:
                 pair = await DexfinAPIOrderBookDataSource.trading_pair_associated_to_exchange_symbol(
                     symbol=key,

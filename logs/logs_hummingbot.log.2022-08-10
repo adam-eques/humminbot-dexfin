@@ -1,0 +1,611 @@
+2022-08-10 23:16:13,599 - 7602 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 4s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:16:17,770 - 7602 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector bitmart failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/bitmart/bitmart_api_order_book_data_source.py", line 89, in fetch_trading_pairs
+    response = await rest_assistant.call(request=request, timeout=10)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/web_assistant/rest_assistant.py", line 35, in call
+    resp = await wait_for(self._connection.call(request), timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/tasks.py", line 490, in wait_for
+    raise exceptions.TimeoutError()
+asyncio.exceptions.TimeoutError
+2022-08-10 23:16:19,442 - 7602 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector k2 failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/k2/k2_api_order_book_data_source.py", line 62, in fetch_trading_pairs
+    async with client.get(f"{constants.REST_URL}{constants.GET_TRADING_PAIRS}",
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:16:19,498 - 7602 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector crypto_com failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/crypto_com/crypto_com_api_order_book_data_source.py", line 85, in fetch_trading_pairs
+    async with client.get(url=url, timeout=10) as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:16:19,545 - 7602 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector wazirx failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/wazirx/wazirx_api_order_book_data_source.py", line 82, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.WAZIRX_API_BASE}/{CONSTANTS.GET_EXCHANGE_INFO}", timeout=10) as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:16:19,553 - 7602 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:16:19,554 - 7602 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:16:19,554 - 7602 - hummingbot.connector.derivative.binance_perpetual.binance_perpetual_api_order_book_data_source - ERROR - There was an error requesting exchange info ()
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/derivative/binance_perpetual/binance_perpetual_api_order_book_data_source.py", line 143, in init_trading_pair_symbols
+    data = await web_utils.api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/derivative/binance_perpetual/binance_perpetual_web_utils.py", line 101, in api_request
+    response = await rest_assistant.call(request=request, timeout=timeout)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/web_assistant/rest_assistant.py", line 35, in call
+    resp = await wait_for(self._connection.call(request), timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/tasks.py", line 490, in wait_for
+    raise exceptions.TimeoutError()
+asyncio.exceptions.TimeoutError
+2022-08-10 23:16:26,036 - 7602 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 7s.
+2022-08-10 23:16:26,867 - 7602 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 7s.
+2022-08-10 23:16:27,589 - 7602 - hummingbot.connector.exchange.ascend_ex.ascend_ex_api_order_book_data_source - ERROR - There was an error requesting exchange info (Cannot connect to host ascendex.com:443 ssl:default [Name or service not known])
+2022-08-10 23:16:27,899 - 7602 - hummingbot.connector.exchange.binance.binance_api_order_book_data_source - ERROR - There was an error requesting exchange info (Cannot connect to host api.binance.com:443 ssl:default [Name or service not known])
+2022-08-10 23:16:28,274 - 7602 - hummingbot.connector.exchange.dexfin.dexfin_api_order_book_data_source - ERROR - There was an error requesting exchange info (Cannot connect to host trade.dexfin.com:443 ssl:default [Name or service not known])
+2022-08-10 23:16:29,720 - 7602 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is None. Retrying in 7s. 
+2022-08-10 23:16:30,528 - 7602 - hummingbot.connector.time_synchronizer - NETWORK - Error getting server time.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/time_synchronizer.py", line 59, in update_server_time_offset_with_time_provider
+    server_time_ms: float = await time_provider
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 127, in get_current_server_time
+    response = await api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 115, in api_request
+    raise IOError(f"Error executing request {method.name} {path}. "
+OSError: Error executing request GET /time. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: RYyISCb2_hSWNces3mp6fugZfLg6tgtVUDTo8dUxHwh_qqd7TMv4-g==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2022-08-10 23:16:30,569 - 7602 - hummingbot.connector.time_synchronizer - WARNING - Could not refresh server time. Check network connection.
+2022-08-10 23:16:31,268 - 7602 - hummingbot.connector.exchange.binance.binance_api_order_book_data_source - ERROR - There was an error requesting exchange info (Error executing request GET /exchangeInfo. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: jXoWSOdCe2wqJ0P6HZbVyBicoqPPP4v0R_UKK2ttMwbvKTl7bLL52g==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>)
+2022-08-10 23:16:41,741 - 7602 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 33s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:21:06,829 - 664 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 4s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:21:08,449 - 664 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector bitmart failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/bitmart/bitmart_api_order_book_data_source.py", line 89, in fetch_trading_pairs
+    response = await rest_assistant.call(request=request, timeout=10)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/web_assistant/rest_assistant.py", line 35, in call
+    resp = await wait_for(self._connection.call(request), timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/tasks.py", line 490, in wait_for
+    raise exceptions.TimeoutError()
+asyncio.exceptions.TimeoutError
+2022-08-10 23:21:08,517 - 664 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:21:08,518 - 664 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:21:09,212 - 664 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector wazirx failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/wazirx/wazirx_api_order_book_data_source.py", line 82, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.WAZIRX_API_BASE}/{CONSTANTS.GET_EXCHANGE_INFO}", timeout=10) as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:21:09,256 - 664 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector k2 failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/k2/k2_api_order_book_data_source.py", line 62, in fetch_trading_pairs
+    async with client.get(f"{constants.REST_URL}{constants.GET_TRADING_PAIRS}",
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:21:09,890 - 664 - hummingbot.connector.derivative.binance_perpetual.binance_perpetual_api_order_book_data_source - ERROR - There was an error requesting exchange info ()
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/derivative/binance_perpetual/binance_perpetual_api_order_book_data_source.py", line 143, in init_trading_pair_symbols
+    data = await web_utils.api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/derivative/binance_perpetual/binance_perpetual_web_utils.py", line 101, in api_request
+    response = await rest_assistant.call(request=request, timeout=timeout)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/web_assistant/rest_assistant.py", line 35, in call
+    resp = await wait_for(self._connection.call(request), timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/tasks.py", line 490, in wait_for
+    raise exceptions.TimeoutError()
+asyncio.exceptions.TimeoutError
+2022-08-10 23:21:15,635 - 664 - hummingbot.connector.time_synchronizer - NETWORK - Error getting server time.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/time_synchronizer.py", line 59, in update_server_time_offset_with_time_provider
+    server_time_ms: float = await time_provider
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 127, in get_current_server_time
+    response = await api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 115, in api_request
+    raise IOError(f"Error executing request {method.name} {path}. "
+OSError: Error executing request GET /time. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: Nupsl2dj3DotkYNatzKOmlJkUY4FsJ67S1spMC3qQBYId5x8QxsOJg==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2022-08-10 23:21:15,675 - 664 - hummingbot.connector.time_synchronizer - WARNING - Could not refresh server time. Check network connection.
+2022-08-10 23:21:16,546 - 664 - hummingbot.connector.exchange.binance.binance_api_order_book_data_source - ERROR - There was an error requesting exchange info (Error executing request GET /exchangeInfo. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: ziC4Qh22_1sZPUw0yTppbSrh82nGKveTttvb7TmJLrKzK1oYcmdVnQ==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>)
+2022-08-10 23:21:16,750 - 664 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 7s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:21:25,605 - 664 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 31s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:21:58,607 - 664 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 282s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:23:22,075 - 664 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector probit_kr failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 969, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore  # noqa
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+TimeoutError: [Errno 110] Connect call failed ('55.28.36.18', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/probit/probit_api_order_book_data_source.py", line 81, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.MARKETS_URL.format(domain)}") as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 520, in _request
+    conn = await self._connector.connect(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1051, in _create_direct_connection
+    raise last_exc
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1020, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 975, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host api.probit.kr:443 ssl:default [Connect call failed ('55.28.36.18', 443)]
+2022-08-10 23:24:16,788 - 664 - hummingbot.client.ui.hummingbot_cli - ERROR - Unhandled error in prompt_toolkit: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/input/vt100.py", line 168, in callback_wrapper
+    callback()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/application/application.py", line 691, in read_from_input
+    self.key_processor.process_keys()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 274, in process_keys
+    self._process_coroutine.send(key_press)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 186, in _process
+    self._call_handler(matches[-1], key_sequence=buffer[:])
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 329, in _call_handler
+    handler.call(event)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_bindings.py", line 102, in call
+    result = self.handler(event)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/client/ui/keybindings.py", line 72, in do_paste
+    get_app().layout.current_buffer.paste_clipboard_data(get_app().clipboard.get_data())
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/clipboard/pyperclip.py", line 28, in get_data
+    text = pyperclip.paste()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/pyperclip/__init__.py", line 301, in __call__
+    raise PyperclipException(EXCEPT_MSG)
+pyperclip.PyperclipException: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+2022-08-10 23:24:23,309 - 664 - hummingbot.client.ui.hummingbot_cli - ERROR - Unhandled error in prompt_toolkit: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/input/vt100.py", line 168, in callback_wrapper
+    callback()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/application/application.py", line 691, in read_from_input
+    self.key_processor.process_keys()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 274, in process_keys
+    self._process_coroutine.send(key_press)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 186, in _process
+    self._call_handler(matches[-1], key_sequence=buffer[:])
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 329, in _call_handler
+    handler.call(event)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_bindings.py", line 102, in call
+    result = self.handler(event)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/client/ui/keybindings.py", line 72, in do_paste
+    get_app().layout.current_buffer.paste_clipboard_data(get_app().clipboard.get_data())
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/clipboard/pyperclip.py", line 28, in get_data
+    text = pyperclip.paste()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/pyperclip/__init__.py", line 301, in __call__
+    raise PyperclipException(EXCEPT_MSG)
+pyperclip.PyperclipException: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+2022-08-10 23:24:29,854 - 664 - hummingbot.client.ui.hummingbot_cli - ERROR - Unhandled error in prompt_toolkit: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/events.py", line 81, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/input/vt100.py", line 168, in callback_wrapper
+    callback()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/application/application.py", line 691, in read_from_input
+    self.key_processor.process_keys()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 274, in process_keys
+    self._process_coroutine.send(key_press)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 186, in _process
+    self._call_handler(matches[-1], key_sequence=buffer[:])
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_processor.py", line 329, in _call_handler
+    handler.call(event)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/key_binding/key_bindings.py", line 102, in call
+    result = self.handler(event)
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/client/ui/keybindings.py", line 72, in do_paste
+    get_app().layout.current_buffer.paste_clipboard_data(get_app().clipboard.get_data())
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/prompt_toolkit/clipboard/pyperclip.py", line 28, in get_data
+    text = pyperclip.paste()
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/pyperclip/__init__.py", line 301, in __call__
+    raise PyperclipException(EXCEPT_MSG)
+pyperclip.PyperclipException: 
+    Pyperclip could not find a copy/paste mechanism for your system.
+    For more information, please visit https://pyperclip.readthedocs.io/en/latest/introduction.html#not-implemented-error 
+2022-08-10 23:25:54,455 - 811 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 4s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:25:56,243 - 811 - hummingbot.connector.time_synchronizer - NETWORK - Error getting server time.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/time_synchronizer.py", line 59, in update_server_time_offset_with_time_provider
+    server_time_ms: float = await time_provider
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 127, in get_current_server_time
+    response = await api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 115, in api_request
+    raise IOError(f"Error executing request {method.name} {path}. "
+OSError: Error executing request GET /time. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: oYF6kau2TmZKWWXD0253aVdesTUSjPc-ZV5ojG_mjPGsrUHi4-VxPA==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2022-08-10 23:25:56,267 - 811 - hummingbot.connector.time_synchronizer - WARNING - Could not refresh server time. Check network connection.
+2022-08-10 23:25:56,580 - 811 - hummingbot.connector.exchange.binance.binance_api_order_book_data_source - ERROR - There was an error requesting exchange info (Error executing request GET /exchangeInfo. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: q9Q1zjVdX59wF3T_4lA6K8C8KKv6eO5sRP9DQKkvgJU9_j_5c19RRg==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>)
+2022-08-10 23:26:02,796 - 811 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 7s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:26:12,272 - 811 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 32s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:26:46,053 - 811 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 274s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:28:03,677 - 811 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector probit_kr failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 969, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore  # noqa
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+TimeoutError: [Errno 110] Connect call failed ('55.28.36.18', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/probit/probit_api_order_book_data_source.py", line 81, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.MARKETS_URL.format(domain)}") as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 520, in _request
+    conn = await self._connector.connect(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1051, in _create_direct_connection
+    raise last_exc
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1020, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 975, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host api.probit.kr:443 ssl:default [Connect call failed ('55.28.36.18', 443)]
+2022-08-10 23:47:21,112 - 1826 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 4s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:47:27,667 - 1826 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:47:27,685 - 1826 - root - INFO - Error fetching data from https://api.gateio.ws/api/v4/spot/currency_pairs. HTTP status is None. Retrying in 4s.
+2022-08-10 23:47:27,986 - 1826 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector k2 failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/k2/k2_api_order_book_data_source.py", line 62, in fetch_trading_pairs
+    async with client.get(f"{constants.REST_URL}{constants.GET_TRADING_PAIRS}",
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 619, in _request
+    break
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:47:28,160 - 1826 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector wazirx failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/wazirx/wazirx_api_order_book_data_source.py", line 82, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.WAZIRX_API_BASE}/{CONSTANTS.GET_EXCHANGE_INFO}", timeout=10) as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 544, in _request
+    await resp.start(conn)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client_reqrep.py", line 905, in start
+    self._continue = None
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/helpers.py", line 656, in __exit__
+    raise asyncio.TimeoutError from None
+asyncio.exceptions.TimeoutError
+2022-08-10 23:47:29,738 - 1826 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 7s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:47:29,827 - 1826 - hummingbot.connector.time_synchronizer - NETWORK - Error getting server time.
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/time_synchronizer.py", line 59, in update_server_time_offset_with_time_provider
+    server_time_ms: float = await time_provider
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 127, in get_current_server_time
+    response = await api_request(
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/binance/binance_web_utils.py", line 115, in api_request
+    raise IOError(f"Error executing request {method.name} {path}. "
+OSError: Error executing request GET /time. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: cn72DRL9fz6gqF8ne_RydQxMLxRqs_dnaJUm6OWFJc39u2gxwUrQuA==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>
+2022-08-10 23:47:29,862 - 1826 - hummingbot.connector.time_synchronizer - WARNING - Could not refresh server time. Check network connection.
+2022-08-10 23:47:30,068 - 1826 - hummingbot.connector.exchange.binance.binance_api_order_book_data_source - ERROR - There was an error requesting exchange info (Error executing request GET /exchangeInfo. HTTP status is 403. Error: <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<TITLE>ERROR: The request could not be satisfied</TITLE>
+</HEAD><BODY>
+<H1>403 ERROR</H1>
+<H2>The request could not be satisfied.</H2>
+<HR noshade size="1px">
+The Amazon CloudFront distribution is configured to block access from your country.
+We can't connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.
+<BR clear="all">
+If you provide content to customers through CloudFront, you can find steps to troubleshoot and help prevent this error by reviewing the CloudFront documentation.
+<BR clear="all">
+<HR noshade size="1px">
+<PRE>
+Generated by cloudfront (CloudFront)
+Request ID: VfmI7ClDpuLu-fTi37iSQPakP6LBYiBPWjRiGtxdJ65pscLbHE5mAw==
+</PRE>
+<ADDRESS>
+</ADDRESS>
+</BODY></HTML>)
+2022-08-10 23:47:38,231 - 1826 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 32s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:47:43,858 - 1826 - hummingbot.core.rate_oracle.rate_oracle - ERROR - Unexpected error while retrieving rates from Binance. Check the log file for more info.
+2022-08-10 23:48:11,805 - 1826 - hummingbot.connector.exchange.altmarkets.altmarkets_api_order_book_data_source - NETWORK - Error fetching data from https://v2.altmarkets.io/api/v2/peatio/public/markets. HTTP status is 403. Retrying in 274s. <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>AltMarkets.io | Sche ... (truncated)
+2022-08-10 23:49:38,809 - 1826 - hummingbot.core.utils.trading_pair_fetcher - ERROR - Connector probit_kr failed to retrieve its trading pairs. Trading pairs autocompletion won't work.
+Traceback (most recent call last):
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 969, in _wrap_create_connection
+    return await self._loop.create_connection(*args, **kwargs)  # type: ignore  # noqa
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1025, in create_connection
+    raise exceptions[0]
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 1010, in create_connection
+    sock = await self._connect_sock(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/base_events.py", line 924, in _connect_sock
+    await self.sock_connect(sock, address)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 494, in sock_connect
+    return await fut
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/asyncio/selector_events.py", line 526, in _sock_connect_cb
+    raise OSError(err, f'Connect call failed {address}')
+TimeoutError: [Errno 110] Connect call failed ('55.28.36.18', 443)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/core/utils/trading_pair_fetcher.py", line 74, in call_fetch_pairs
+    self.trading_pairs[exchange_name] = await fetch_fn
+  File "/mnt/e/Projects/hummingbot/hummingbot/hummingbot/connector/exchange/probit/probit_api_order_book_data_source.py", line 81, in fetch_trading_pairs
+    async with client.get(f"{CONSTANTS.MARKETS_URL.format(domain)}") as response:
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 1117, in __aenter__
+    self._resp = await self._coro
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/client.py", line 520, in _request
+    conn = await self._connector.connect(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 535, in connect
+    proto = await self._create_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 892, in _create_connection
+    _, proto = await self._create_direct_connection(req, traces, timeout)
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1051, in _create_direct_connection
+    raise last_exc
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 1020, in _create_direct_connection
+    transp, proto = await self._wrap_create_connection(
+  File "/home/knight/miniconda3/envs/hummingbot/lib/python3.8/site-packages/aiohttp/connector.py", line 975, in _wrap_create_connection
+    raise client_error(req.connection_key, exc) from exc
+aiohttp.client_exceptions.ClientConnectorError: Cannot connect to host api.probit.kr:443 ssl:default [Connect call failed ('55.28.36.18', 443)]

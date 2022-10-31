@@ -1,15 +1,11 @@
-import calendar
 import hashlib
 import hmac
-import time
-from collections import OrderedDict
 from pprint import pprint
-from typing import Any, Dict
-from urllib.parse import urlencode
+from typing import Dict
 
 from hummingbot.connector.time_synchronizer import TimeSynchronizer
 from hummingbot.core.web_assistant.auth import AuthBase
-from hummingbot.core.web_assistant.connections.data_types import RESTMethod, RESTRequest, WSRequest
+from hummingbot.core.web_assistant.connections.data_types import RESTRequest, WSRequest
 
 
 class DexfinAuth(AuthBase):
@@ -41,13 +37,13 @@ class DexfinAuth(AuthBase):
         return request  # pass-through
 
     def header_for_authentication(self) -> Dict[str, str]:
-        # nonce = str(int(self.time_provider.time()))
+        nonce = str(int(self.time_provider.time()))
 
-        current_GMT = time.gmtime()
+        # current_GMT = time.gmtime()
 
-        # ts stores timestamp
-        ts = calendar.timegm(current_GMT)
-        nonce = str(int(ts * 1000))
+        # # ts stores timestamp
+        # ts = calendar.timegm(current_GMT)
+        # nonce = str(int(ts * 1000))
 
         pprint('nonce: ' + nonce)
 
